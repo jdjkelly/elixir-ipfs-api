@@ -31,11 +31,7 @@ defmodule ElixirIpfsApi.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:httpoison, "~> 1.0"},
-      {:poison, "~> 3.1", override: true},
-      {:inch_ex, "~> 0.5", only: :docs},
-      {:ex_doc, "~> 0.18.3", only: :dev},
-      {:earmark, "~> 1.2", only: :dev}
+      {:httpoison, "~> 1.6"}
     ]
   end
 
