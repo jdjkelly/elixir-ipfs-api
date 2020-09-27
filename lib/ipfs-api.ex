@@ -451,7 +451,7 @@ defmodule IpfsApi do
 
   defp request_internal(_connection, :post, url, %{} = args) do
     url
-    |> HTTPoison.post(Poison.encode(args))
+    |> HTTPoison.post(Jason.encode(args))
     |> process_response
   end
 
@@ -465,7 +465,7 @@ defmodule IpfsApi do
   end
 
   defp process_response(response) do
-    process_response(response, &Poison.decode/1)
+    process_response(response, &Jason.decode/1)
   end
 
   defp process_response(
