@@ -430,10 +430,8 @@ defmodule IpfsApi do
   defp request_send_file(url, content) do
     url
     |> (fn url ->
-          boundary = "a831rwxi1a3gzaorw1w2z49dlsor"
-
-          HTTPoison.request(:post, url, create_add_body(content, boundary), [
-            {"Content-Type", "multipart/form-data; boundary=#{boundary}"}
+          HTTPoison.request(:post, url, create_add_body(content), [
+            {"Content-Type", "multipart/form-data"}
           ])
         end).()
     |> process_response
@@ -487,8 +485,6 @@ defmodule IpfsApi do
   end
 
   defp create_add_body(content, boundary) do
-    "--#{boundary}\r\nContent-Type: application/octet-stream\r\nContent-Disposition: file; \r\n\r\n#{
-      content
-    }    #{boundary}"
+    "Content-Type: application/octet-stream\r\nContent-Disposition: file; \r\n\r\n#{content}"
   end
 end
